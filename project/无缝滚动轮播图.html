@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #big{
+            position: relative;
+            overflow: hidden;
+            margin: 100px auto;
+            background: red;
+            width: 80%;
+            height: 300px;
+        }
+        #big ul{
+            left: 0;
+            top: 0;
+            position: absolute;
+        }
+        #big li{
+            float:left;
+            list-style: none;
+            width: 500px;
+            height: 300px;
+        }
+        img{
+            height: 300px;
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+<div id="big">
+    <ul>
+
+        <li>
+        <a href="https://hao.360.cn/">
+            <img src="images1.jpg.jpg" alt="1.报错"/>
+        </a>
+        </li>
+        <li><img src="images1.jpg.jpg"/></li>
+        <li><img src="images2.jpg.jpg"/></li>
+        <li><img src="images4.jpg.jpg"/></li>
+    </ul>
+</div>
+<script type="text/javascript">
+    var spend=2;//移动方向控制
+    var div=document.getElementById("big");
+    var ul=document.getElementsByTagName("ul")[0];
+    var li=document.getElementsByTagName("li");
+    ul.innerHTML=ul.innerHTML+ul.innerHTML;//无缝拼接
+    //offsetHeight, offsetWidth 元素像素 高度，宽度
+    ul.style.width=li.length* li[0].offsetWidth + "px";//设置父级宽度
+    var s =setInterval(lb,10);
+    ul.onmouseover=function(){clearInterval(s);};
+    ul.onmouseout = function(){s=setInterval(lb, 10);}
+    function lb(){
+        if(spend===2){
+            //从左往右
+            if (ul.offsetLeft >0){
+                ul.style.left = -ul.offsetWidth / 2 + 'px';
+            }
+            ul.style.left=ul.offsetLeft+spend+"px";
+        }else{
+            if (ul.offsetLeft <-2000){
+                //从右往左
+                ul.style.left ='0px';
+            }
+            ul.style.left=ul.offsetLeft+spend+"px";
+        }
+    }
+</script>
+</body>
+</html>
+
